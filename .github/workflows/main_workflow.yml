@@ -1,8 +1,10 @@
-name: main-workflow
+name: main_workflow
+
 on: 
   push:
     branches:
-      - 'nodejs_linter_job'
+      - nodejs_linter_job
+
 jobs:
   
   primerjob:
@@ -29,9 +31,10 @@ jobs:
             LINTER_RULES_PATH: /
             JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
             VALIDATE_JAVASCRIPT_ES: true
+
   segundojob:
     name: test-execution
-    runs-on: ubntu-lastest
+    runs-on: ubntu-latest
 
     steps:
       - name: Checkout code 
