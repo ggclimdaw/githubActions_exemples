@@ -8,7 +8,7 @@ on:
 jobs:
   
   primerjob:
-    name: linter_execution
+    name: linter-execution
     runs-on: ubuntu-latest
     strategy:
           matrix:
@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
         - name: Linter execution
-          uses: eslint/github-action@draft
+          uses: .eslintrc.json
           env:
             DEFAULT_BRANCH: nodejs_example
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,7 +34,7 @@ jobs:
 
   segundojob:
     name: test-execution
-    runs-on: ubntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code 
