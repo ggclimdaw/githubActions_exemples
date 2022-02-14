@@ -4,15 +4,17 @@ on:
     branches:
       - 'nodejs_linter_job'
 jobs:
-  linter-execution:
-    name: linter-execution
+  
+  primerjob:
+    name: linter_execution
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        node-version: 12
+          matrix:
+            node-version: [10, 12]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Setting nodeversion10
         uses: actions/setup-node@v2
@@ -20,20 +22,23 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
         - name: Linter execution
-          uses: docker://github/super-linter:v3-0.1
+          uses: docker://github/super-linter:v3.0.1
           env:
             DEFAULT_BRANCH: nodejs_example
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            LINTER_RULES: /
+            LINTER_RULES_PATH: /
             JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
             VALIDATE_JAVASCRIPT_ES: true
-  swegundo-job:
+  segundojob:
     name: test-execution
     runs-on: ubntu-lastest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code 
+        uses: actions/checkout@v2
 
-      - name: Runtest jest
-      run:
-        npm install && npm test && npm test 
+      - name: Run jest test
+        run:
+          npm install jest
+          npm install
+          npm test 
